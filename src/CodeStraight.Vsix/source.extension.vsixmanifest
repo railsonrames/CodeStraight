@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
+	<Metadata>
+		<!-- TODO: before publishing, set Publisher to the Marketplace publisher id. -->
+		<Identity Id="CodeStraight.4f1c2a7e-9b3d-4c55-a1e8-6d2f0b7c9e14" Version="0.9.1" Language="en-US" Publisher="CodeStraight" />
+		<DisplayName>CodeStraight</DisplayName>
+		<Description xml:space="preserve">ES · Código C# recto en cada guardado, con las reglas del repositorio: .editorconfig (cómo debe quedar) y .codestraight (qué se activa).
+• Renombrado como Ctrl+R, R según las reglas de nomenclatura.
+• Namespace de archivo, usings, modificadores y líneas en blanco.
+• Formato y líneas partidas al límite (uno por línea o compacto).
+• Textos largos con +, operadores y coma final.
+• UTF-8 y saltos de línea en cualquier archivo.
+• Guías verticales y registro en Salida.
+Manual con imágenes: enlace Introducción.
+
+EN · Straight C# code on every save, with the repository rules: .editorconfig (how it should look) and .codestraight (what is on).
+• Renaming like Ctrl+R, R to your naming rules.
+• File-scoped namespaces, usings, modifiers and blank lines.
+• Formatting and wrapping at the limit (one per line or compact).
+• Long strings with +, operators and trailing commas.
+• UTF-8 and line endings on any file.
+• Vertical guidelines and an Output log.
+Manual with images: Getting Started link.</Description>
+		<GettingStartedGuide>Resources\CodeStraight.html</GettingStartedGuide>
+		<ReleaseNotes>Resources\ReleaseNotes.html</ReleaseNotes>
+		<Icon>Resources\icon.png</Icon>
+		<PreviewImage>Resources\preview.png</PreviewImage>
+		<Tags>editorconfig, format, formatter, code style, cleanup, naming, wrap, line length, guideline, csharp</Tags>
+		<Preview>true</Preview>
+	</Metadata>
+	<Installation>
+		<InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[17.8,19.0)">
+			<ProductArchitecture>amd64</ProductArchitecture>
+		</InstallationTarget>
+		<InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[17.8,19.0)">
+			<ProductArchitecture>arm64</ProductArchitecture>
+		</InstallationTarget>
+	</Installation>
+	<Dependencies>
+		<Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.7.2,)" />
+	</Dependencies>
+	<Prerequisites>
+		<Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[17.0,)" DisplayName="Visual Studio core editor" />
+		<Prerequisite Id="Microsoft.VisualStudio.Component.Roslyn.LanguageServices" Version="[17.0,)" DisplayName="C# and Visual Basic" />
+	</Prerequisites>
+	<Assets>
+		<Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
+		<Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%|" />
+	</Assets>
+</PackageManifest>

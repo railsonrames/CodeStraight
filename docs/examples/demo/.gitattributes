@@ -1,0 +1,2 @@
+# The demo starts in Windows-1252 with LF on purpose: saving it shows the encoding and line ending conversion.
+DemoCodeStraight.antes.cs -text

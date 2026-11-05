@@ -1,0 +1,17 @@
+root = true
+
+[*]
+charset = utf-8
+insert_final_newline = true
+
+[*.cs]
+indent_style = tab
+tab_width = 4
+max_line_length = 140
+csharp_style_namespace_declarations = file_scoped:warning
+dotnet_sort_system_directives_first = true
+roslynator_trailing_comma_style = include
+
+[*.{ps1,psm1,psd1}]
+# Windows PowerShell 5.1 only reads a script as UTF-8 when it has a BOM; without it, accents break.
+charset = utf-8-bom

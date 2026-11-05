@@ -1,0 +1,70 @@
+<Project>
+
+	<!-- Explicit SDK imports: the VSSDK targets must be imported after the .NET SDK targets. -->
+	<Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
+
+	<PropertyGroup>
+		<!-- Visual Studio extensions run in-process on .NET Framework. -->
+		<TargetFramework>net472</TargetFramework>
+		<LangVersion>latest</LangVersion>
+		<Nullable>enable</Nullable>
+		<RootNamespace>CodeStraight.Vsix</RootNamespace>
+		<AssemblyName>CodeStraight</AssemblyName>
+
+		<!-- VSIX packaging (Microsoft.VSSDK.BuildTools). Build with Visual Studio's MSBuild, not "dotnet build". -->
+		<GeneratePkgDefFile>true</GeneratePkgDefFile>
+		<UseCodebase>true</UseCodebase>
+		<IncludeAssemblyInVSIXContainer>true</IncludeAssemblyInVSIXContainer>
+		<IncludeDebugSymbolsInVSIXContainer>false</IncludeDebugSymbolsInVSIXContainer>
+		<IncludeDebugSymbolsInLocalVSIXDeployment>true</IncludeDebugSymbolsInLocalVSIXDeployment>
+		<CreateVsixContainer>true</CreateVsixContainer>
+		<!-- F5 deployment to the experimental instance needs the "Visual Studio extension development" workload. -->
+		<DeployExtension Condition="'$(DeployExtension)' == ''">false</DeployExtension>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- Assemblies that Visual Studio already provides: compile against them, never ship them in the VSIX. -->
+		<PackageReference Include="Microsoft.VisualStudio.SDK" Version="17.8.37222" ExcludeAssets="runtime" />
+		<PackageReference Include="Microsoft.VisualStudio.LanguageServices" Version="4.8.0" ExcludeAssets="runtime" />
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.8.0" ExcludeAssets="runtime" />
+		<PackageReference Include="Microsoft.VSSDK.BuildTools" Version="17.14.2142" PrivateAssets="all" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\CodeStraight.Core\CodeStraight.Core.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<!-- WPF, for the guideline drawn in the editor. -->
+		<Reference Include="PresentationCore" />
+		<Reference Include="PresentationFramework" />
+		<Reference Include="WindowsBase" />
+		<Reference Include="System.Xaml" />
+		<Reference Include="System.ComponentModel.Composition" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="source.extension.vsixmanifest" SubType="Designer" />
+		<Content Include="..\..\README.md" Link="README.md" IncludeInVSIX="true" />
+		<Content Include="..\..\THIRD-PARTY-NOTICES.md" Link="THIRD-PARTY-NOTICES.md" IncludeInVSIX="true" />
+		<Content Include="..\..\docs\MANUAL.md" Link="MANUAL.md" IncludeInVSIX="true" />
+		<Content Include="Resources\icon.png" IncludeInVSIX="true" />
+		<Content Include="Resources\preview.png" IncludeInVSIX="true" />
+		<Content Include="Resources\CodeStraight.html" IncludeInVSIX="true" />
+		<Content Include="Resources\ReleaseNotes.html" IncludeInVSIX="true" />
+	</ItemGroup>
+
+	<!--
+		Roslyn, System.Collections.Immutable, System.Composition… arrive transitively through CodeStraight.Core.
+		Visual Studio loads its own copies; shipping them would cause version conflicts. Only our assemblies go in the VSIX.
+	-->
+	<Target Name="KeepOnlyCodeStraightAssemblies" AfterTargets="ResolveAssemblyReferences">
+		<ItemGroup>
+			<ReferenceCopyLocalPaths Remove="@(ReferenceCopyLocalPaths)" Condition="'%(Filename)' != 'CodeStraight.Core'" />
+		</ItemGroup>
+	</Target>
+
+	<Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
+	<Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="'$(VSToolsPath)' != ''" />
+
+</Project>

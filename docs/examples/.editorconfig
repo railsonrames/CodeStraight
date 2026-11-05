@@ -1,0 +1,94 @@
+root = true
+
+[*.cs]
+# Indentación
+indent_style = tab
+indent_size = 4
+tab_width = 4
+# Límite de línea
+max_line_length = 120
+
+# Líneas en blanco: como máximo una seguida (IDE2000) y ninguna entre llaves de cierre (IDE2002)
+dotnet_style_allow_multiple_blank_lines_experimental = false:warning
+csharp_style_allow_blank_lines_between_consecutive_braces_experimental = false:warning
+
+# Namespaces y usings
+csharp_style_namespace_declarations = file_scoped:warning
+csharp_using_directive_placement = outside_namespace:warning
+dotnet_sort_system_directives_first = true
+
+# Modificadores de acceso obligatorios
+dotnet_style_require_accessibility_modifiers = for_non_interface_members:warning
+
+# Usings no utilizados
+dotnet_diagnostic.IDE0005.severity = warning
+
+# Al partir una expresión, el operador empieza la línea nueva (igual que binary_operator_new_line = before)
+dotnet_style_operator_placement_when_wrapping = beginning_of_line
+
+# Nomenclatura: métodos async terminan en Async (más específica que la de métodos)
+dotnet_naming_rule.async_methods_end_in_async.symbols = async_methods
+dotnet_naming_rule.async_methods_end_in_async.style = end_in_async
+dotnet_naming_rule.async_methods_end_in_async.severity = warning
+dotnet_naming_symbols.async_methods.applicable_kinds = method
+dotnet_naming_symbols.async_methods.required_modifiers = async
+dotnet_naming_style.end_in_async.capitalization = pascal_case
+dotnet_naming_style.end_in_async.required_suffix = Async
+
+# Nomenclatura: interfaces empiezan por I
+dotnet_naming_rule.interfaces_begin_with_i.symbols = interfaces
+dotnet_naming_rule.interfaces_begin_with_i.style = begin_with_i
+dotnet_naming_rule.interfaces_begin_with_i.severity = warning
+dotnet_naming_symbols.interfaces.applicable_kinds = interface
+dotnet_naming_style.begin_with_i.capitalization = pascal_case
+dotnet_naming_style.begin_with_i.required_prefix = I
+
+# Nomenclatura: constantes en PascalCase (más específica que la de campos privados)
+dotnet_naming_rule.constants_pascal.symbols = constant_fields
+dotnet_naming_rule.constants_pascal.style = pascal
+dotnet_naming_rule.constants_pascal.severity = suggestion
+dotnet_naming_symbols.constant_fields.applicable_kinds = field
+dotnet_naming_symbols.constant_fields.required_modifiers = const
+
+dotnet_naming_style.pascal.capitalization = pascal_case
+
+# Nomenclatura: campos privados en _camelCase, también los static readonly (_logger)
+dotnet_naming_rule.private_fields_underscore.symbols = private_fields
+dotnet_naming_rule.private_fields_underscore.style = underscore_camel
+dotnet_naming_rule.private_fields_underscore.severity = error
+dotnet_naming_symbols.private_fields.applicable_kinds = field
+dotnet_naming_symbols.private_fields.applicable_accessibilities = private
+dotnet_naming_style.underscore_camel.capitalization = camel_case
+dotnet_naming_style.underscore_camel.required_prefix = _
+
+# Nomenclatura: tipos en PascalCase (las interfaces tienen su propia regla)
+dotnet_naming_rule.types_pascal.symbols = types
+dotnet_naming_rule.types_pascal.style = pascal
+dotnet_naming_rule.types_pascal.severity = warning
+dotnet_naming_symbols.types.applicable_kinds = class, struct, enum, delegate
+
+# Nomenclatura: métodos, funciones locales, propiedades y eventos en PascalCase (la de async es más específica)
+dotnet_naming_rule.members_pascal.symbols = members
+dotnet_naming_rule.members_pascal.style = pascal
+dotnet_naming_rule.members_pascal.severity = warning
+dotnet_naming_symbols.members.applicable_kinds = method, local_function, property, event
+
+# Nomenclatura: parámetros y variables locales en camelCase
+dotnet_naming_rule.locals_camel.symbols = locals
+dotnet_naming_rule.locals_camel.style = camel
+dotnet_naming_rule.locals_camel.severity = warning
+dotnet_naming_symbols.locals.applicable_kinds = parameter, local
+dotnet_naming_style.camel.capitalization = camel_case
+
+# Nomenclatura: genéricos empiezan por T (T, TKey, TEntity)
+dotnet_naming_rule.type_parameters_t.symbols = type_parameters
+dotnet_naming_rule.type_parameters_t.style = begin_with_t
+dotnet_naming_rule.type_parameters_t.severity = warning
+dotnet_naming_symbols.type_parameters.applicable_kinds = type_parameter
+dotnet_naming_style.begin_with_t.capitalization = pascal_case
+dotnet_naming_style.begin_with_t.required_prefix = T
+
+# Proyectos de test con nombres separados por _ (Crear_CuandoNoExiste_Lanza): quitar el # de las dos líneas
+# siguientes (y ajustar la carpeta) para que esos métodos no se conviertan en CrearCuandoNoExisteLanza.
+# [tests/**.cs]
+# dotnet_naming_rule.members_pascal.severity = none

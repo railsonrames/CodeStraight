@@ -1,0 +1,6 @@
+# CodeStraight uses itself.
+format_on_save = true
+namespace_declarations = true
+remove_unused_usings = true
+sort_usings = true
+show_guideline = true

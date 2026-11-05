@@ -1,0 +1,187 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>CodeStraight · Release notes</title><style>
+:root { color-scheme: light dark; --bg: #ffffff; --fg: #1f2328; --muted: #59636e; --border: #d1d9e0; --code: #f6f8fa; --accent: #005cb0; }
+@media (prefers-color-scheme: dark) { :root { --bg: #1e1e1e; --fg: #e6e6e6; --muted: #a0a0a0; --border: #3c3c3c; --code: #2a2a2a; --accent: #4aa3ff; } }
+body { background: var(--bg); color: var(--fg); font: 15px/1.6 "Segoe UI", system-ui, sans-serif; margin: 0; }
+main { max-width: 1100px; margin: 0 auto; padding: 24px 16px 64px; }
+nav { position: sticky; top: 0; background: var(--bg); border-bottom: 1px solid var(--border); padding: 10px 16px; z-index: 1; }
+nav a { margin-right: 18px; color: var(--accent); text-decoration: none; font-weight: 600; }
+h1 { border-bottom: 1px solid var(--border); padding-bottom: 6px; margin-top: 48px; }
+h2 { margin-top: 36px; } h3 { margin-top: 28px; }
+a { color: var(--accent); }
+img { max-width: 100%; height: auto; border-radius: 6px; border: 1px solid var(--border); }
+code { background: var(--code); padding: 1px 5px; border-radius: 4px; font-family: Consolas, "Cascadia Mono", monospace; font-size: 13px; }
+pre { background: var(--code); padding: 12px 14px; border-radius: 6px; overflow-x: auto; }
+pre code { padding: 0; background: none; }
+table { border-collapse: collapse; margin: 12px 0; display: block; overflow-x: auto; }
+th, td { border: 1px solid var(--border); padding: 6px 10px; text-align: left; vertical-align: top; }
+th { background: var(--code); }
+blockquote { margin: 12px 0; padding: 2px 14px; border-left: 4px solid var(--accent); color: var(--muted); }
+hr { border: 0; border-top: 1px solid var(--border); margin: 40px 0; }
+</style></head><body><nav><a href="#changes">Versiones · Release notes</a></nav><main><section id="changes"><h1 id="c-historial-de-versiones-release-notes">Historial de versiones / Release notes</h1>
+<blockquote>
+<p>🇪🇸 <a href="#c-espanol">Español</a> · 🇬🇧 <a href="#c-english">English</a></p>
+</blockquote>
+<hr />
+<h1 id="c-espanol">Español</h1>
+<h2 id="c-sin-publicar">Sin publicar</h2>
+<ul>
+<li><code>remove_braces</code>: quitar las llaves de <code>if</code>/<code>else</code>, <code>for</code>, <code>foreach</code> y <code>while</code> con una sola instrucción simple, según <code>csharp_prefer_braces</code> del <code>.editorconfig</code> (<code>false</code> o <code>when_multiline</code>). Una cadena <code>if</code>/<code>else</code> mantiene el mismo estilo en todas sus ramas y la instrucción conserva su indentación (no mezcla tabuladores y espacios en archivos aún no migrados).</li>
+</ul>
+<h2 id="c-091">0.9.1</h2>
+<ul>
+<li>Renombrado: también parámetros, variables locales, funciones locales y genéricos (<code>applicable_kinds = parameter</code>, <code>local</code>, <code>local_function</code>, <code>type_parameter</code>), con todas sus referencias.</li>
+<li>Renombrado: un genérico llamado solo <code>T</code> cumple la regla del prefijo <code>T</code> (antes pasaba a <code>TT</code>).</li>
+<li>Renombrado: cuando un renombrado alcanza a otro símbolo del archivo (el método de una interfaz y su implementación <code>async</code>), el nombre se recalcula y todo queda resuelto en el mismo guardado (antes hacía falta guardar dos veces para el sufijo <code>Async</code>).</li>
+<li>Manual: ejemplo de equipo con todas las reglas de nomenclatura y cada clave del <code>.codestraight</code> explicada (sección 6.1 y carpeta <code>docs/examples</code>).</li>
+</ul>
+<h2 id="c-090">0.9.0</h2>
+<ul>
+<li>Indicador en la barra de estado: verde si CodeStraight está activo para el documento actual, gris si no, naranja si el último guardado tuvo un error. El tooltip muestra el <code>.codestraight</code> y las acciones activas; un clic abre <em>Salida → CodeStraight</em>.</li>
+<li><code>remove_comments</code>: quitar los comentarios <code>//</code> y <code>/* */</code>, manteniendo los de documentación (<code>///</code>) que usan IntelliSense y Swagger.</li>
+<li><code>screaming_case_constants</code>: constantes en mayúsculas separadas por <code>_</code> (<code>MiConstanteValorMaximo</code> → <code>MI_CONSTANTE_VALOR_MAXIMO</code>), con todas sus referencias.</li>
+</ul>
+<h2 id="c-083">0.8.3</h2>
+<ul>
+<li>Renombrado: los nombres en mayúsculas se convierten al estilo de la regla (<code>MAX_VALUE</code> → <code>MaxValue</code>, <code>_maxValue</code>; <code>SCREAMCASE</code> → <code>Screamcase</code>; <code>URL</code> → <code>Url</code>). Las siglas de dos letras (<code>ID</code>, <code>IO</code>) se mantienen, como indican las guías de nomenclatura de .NET.</li>
+</ul>
+<h2 id="c-082">0.8.2</h2>
+<ul>
+<li>Descripción de la extensión en español e inglés.</li>
+<li>Manual completo con imágenes y notas de versión incluidos en la extensión (enlaces <em>Introducción</em> y <em>Notas de la versión</em>).</li>
+</ul>
+<h2 id="c-081">0.8.1</h2>
+<ul>
+<li>Icono e imagen de vista previa.</li>
+<li>Documentación: funcionalidades con imágenes y manual de uso, en español e inglés.</li>
+</ul>
+<h2 id="c-080">0.8.0</h2>
+<ul>
+<li><code>wrap_list_style</code>: parámetros y argumentos uno por línea (<code>one_per_line</code>) o todos los que quepan por línea (<code>fill</code>).</li>
+<li><code>wrap_tolerance</code>: columnas que una línea puede pasar del límite antes de partirse.</li>
+</ul>
+<h2 id="c-072">0.7.2</h2>
+<ul>
+<li>Después de guardar se comprueba en disco la codificación real del archivo y se registra en <em>Salida</em>.</li>
+<li>La codificación se aplica también a la configuración del búfer que usa Visual Studio al escribir el archivo.</li>
+</ul>
+<h2 id="c-071">0.7.1</h2>
+<ul>
+<li>Si el archivo se abrió con una codificación incorrecta (muestra <code>�</code>), no se cambia la codificación y se avisa.</li>
+</ul>
+<h2 id="c-070">0.7.0</h2>
+<ul>
+<li><code>normalize_line_endings</code> y <code>normalize_charset</code>: <code>end_of_line</code> y <code>charset</code> del <code>.editorconfig</code> en cualquier archivo de texto.</li>
+</ul>
+<h2 id="c-060">0.6.0</h2>
+<ul>
+<li><code>wrap_attributes</code>: permitir que los atributos queden en una línea larga.</li>
+<li><code>split_long_strings</code>: partir textos largos en trozos concatenados con <code>+</code>.</li>
+<li>Los operadores que quedan solos en una línea o en el lado contrario se mueven al lado configurado.</li>
+</ul>
+<h2 id="c-050">0.5.0</h2>
+<ul>
+<li><code>rename_symbols</code>, <code>rename_scope</code> y <code>rename_controller_actions</code>: renombrado según todas las reglas de nomenclatura
+  (<code>Async</code>, prefijo <code>I</code>, constantes…), como Ctrl+R, R.</li>
+</ul>
+<h2 id="c-040">0.4.0</h2>
+<ul>
+<li>Los valores propios de la extensión (<code>trailing_comma_style</code>, <code>binary_operator_new_line</code>, <code>guidelines</code>,
+  <code>guideline_color</code>) pasan al <code>.codestraight</code>; el <code>.editorconfig</code> queda solo con claves estándar.</li>
+</ul>
+<h2 id="c-030">0.3.0</h2>
+<ul>
+<li><code>remove_extra_blank_lines</code>: como máximo una línea en blanco seguida y ninguna entre llaves de cierre.</li>
+</ul>
+<h2 id="c-020">0.2.0</h2>
+<ul>
+<li>Se quitan las comas tras el último argumento (error de compilación) antes del resto de acciones.</li>
+<li>Usings repetidos, indentación de las líneas de continuación, listas de accesores en varias líneas.</li>
+<li><code>explicit_types</code> y <code>log_level = verbose</code>.</li>
+</ul>
+<h2 id="c-010">0.1.0</h2>
+<ul>
+<li>Primera versión: <code>.editorconfig</code> + <code>.codestraight</code>, renombrado de campos privados, namespace de archivo, usings,
+  modificadores de acceso, formato, partición de líneas, coma final y guía vertical al guardar.</li>
+</ul>
+<hr />
+<h1 id="c-english">English</h1>
+<h2 id="c-unreleased">Unreleased</h2>
+<ul>
+<li><code>remove_braces</code>: remove the braces of <code>if</code>/<code>else</code>, <code>for</code>, <code>foreach</code> and <code>while</code> with a single simple statement, following <code>csharp_prefer_braces</code> of the <code>.editorconfig</code> (<code>false</code> or <code>when_multiline</code>). An <code>if</code>/<code>else</code> chain keeps the same style in every branch and the statement keeps its indentation (no mixing of tabs and spaces in files not yet migrated).</li>
+</ul>
+<h2 id="c-091_1">0.9.1</h2>
+<ul>
+<li>Renaming: also parameters, locals, local functions and type parameters (<code>applicable_kinds = parameter</code>, <code>local</code>, <code>local_function</code>, <code>type_parameter</code>), with every reference.</li>
+<li>Renaming: a type parameter called just <code>T</code> follows the <code>T</code> prefix rule (it used to become <code>TT</code>).</li>
+<li>Renaming: when a rename reaches another symbol of the file (an interface method and its <code>async</code> implementation), the name is computed again and everything is settled in the same save (the <code>Async</code> suffix used to need a second save).</li>
+<li>Manual: team example with every naming rule and every <code>.codestraight</code> key explained (section 6.1 and the <code>docs/examples</code> folder).</li>
+</ul>
+<h2 id="c-090_1">0.9.0</h2>
+<ul>
+<li>Status bar indicator: green when CodeStraight is active for the current document, grey when not, orange when the last save had an error. The tooltip shows the <code>.codestraight</code> file and the enabled actions; a click opens <em>Output → CodeStraight</em>.</li>
+<li><code>remove_comments</code>: remove <code>//</code> and <code>/* */</code> comments, keeping the documentation comments (<code>///</code>) used by IntelliSense and Swagger.</li>
+<li><code>screaming_case_constants</code>: constants in upper case separated by <code>_</code> (<code>MyConstantMaxValue</code> → <code>MY_CONSTANT_MAX_VALUE</code>), with every reference.</li>
+</ul>
+<h2 id="c-083_1">0.8.3</h2>
+<ul>
+<li>Renaming: upper-case names are converted to the rule's style (<code>MAX_VALUE</code> → <code>MaxValue</code>, <code>_maxValue</code>; <code>SCREAMCASE</code> → <code>Screamcase</code>; <code>URL</code> → <code>Url</code>). Two-letter acronyms (<code>ID</code>, <code>IO</code>) are kept, as the .NET naming guidelines say.</li>
+</ul>
+<h2 id="c-082_1">0.8.2</h2>
+<ul>
+<li>Extension description in Spanish and English.</li>
+<li>Full manual with images and release notes included in the extension (<em>Getting started</em> and <em>Release notes</em> links).</li>
+</ul>
+<h2 id="c-081_1">0.8.1</h2>
+<ul>
+<li>Icon and preview image.</li>
+<li>Documentation: features with images and user manual, in Spanish and English.</li>
+</ul>
+<h2 id="c-080_1">0.8.0</h2>
+<ul>
+<li><code>wrap_list_style</code>: parameters and arguments one per line (<code>one_per_line</code>) or as many per line as fit (<code>fill</code>).</li>
+<li><code>wrap_tolerance</code>: columns a line may go over the limit before it is wrapped.</li>
+</ul>
+<h2 id="c-072_1">0.7.2</h2>
+<ul>
+<li>After saving, the real encoding of the file is checked on disk and written to <em>Output</em>.</li>
+<li>The encoding is also set on the buffer setting Visual Studio uses when writing the file.</li>
+</ul>
+<h2 id="c-071_1">0.7.1</h2>
+<ul>
+<li>When a file was opened with the wrong encoding (it shows <code>�</code>), the encoding is not changed and a warning is logged.</li>
+</ul>
+<h2 id="c-070_1">0.7.0</h2>
+<ul>
+<li><code>normalize_line_endings</code> and <code>normalize_charset</code>: the <code>end_of_line</code> and <code>charset</code> of the <code>.editorconfig</code> on any text file.</li>
+</ul>
+<h2 id="c-060_1">0.6.0</h2>
+<ul>
+<li><code>wrap_attributes</code>: let attributes stay on a long line.</li>
+<li><code>split_long_strings</code>: split long strings into parts concatenated with <code>+</code>.</li>
+<li>Operators left alone on a line or on the other side are moved to the configured side.</li>
+</ul>
+<h2 id="c-050_1">0.5.0</h2>
+<ul>
+<li><code>rename_symbols</code>, <code>rename_scope</code> and <code>rename_controller_actions</code>: renaming to every naming rule (<code>Async</code>, <code>I</code> prefix,
+  constants…), like Ctrl+R, R.</li>
+</ul>
+<h2 id="c-040_1">0.4.0</h2>
+<ul>
+<li>The extension's own values (<code>trailing_comma_style</code>, <code>binary_operator_new_line</code>, <code>guidelines</code>, <code>guideline_color</code>) move to
+  <code>.codestraight</code>; <code>.editorconfig</code> keeps standard keys only.</li>
+</ul>
+<h2 id="c-030_1">0.3.0</h2>
+<ul>
+<li><code>remove_extra_blank_lines</code>: at most one blank line in a row and none between closing braces.</li>
+</ul>
+<h2 id="c-020_1">0.2.0</h2>
+<ul>
+<li>Commas after the last argument (a compile error) are removed before the other actions.</li>
+<li>Repeated usings, continuation line indentation, multi-line accessor lists.</li>
+<li><code>explicit_types</code> and <code>log_level = verbose</code>.</li>
+</ul>
+<h2 id="c-010_1">0.1.0</h2>
+<ul>
+<li>First version: <code>.editorconfig</code> + <code>.codestraight</code>, private field renaming, file-scoped namespaces, usings, accessibility
+  modifiers, formatting, line wrapping, trailing commas and a vertical guideline on save.</li>
+</ul></section><hr></main></body></html>

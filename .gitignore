@@ -1,0 +1,8 @@
+bin/
+obj/
+.vs/
+*.user
+*.vsix
+# Git on Windows ignores case, so the pattern above also matches the project folder.
+!src/CodeStraight.Vsix/
+TestResults/

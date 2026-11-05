@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/CodeStraight.Core/CodeStraight.Core.csproj" />
+    <Project Path="src/CodeStraight.Vsix/CodeStraight.Vsix.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/CodeStraight.Core.Tests/CodeStraight.Core.Tests.csproj" />
+  </Folder>
+</Solution>

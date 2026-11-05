@@ -1,0 +1,48 @@
+# CodeStraight: funcionalidades activas al guardar un archivo .cs.
+# Los valores estándar (límite de línea, tabulador, namespace, nomenclatura...) se leen del .editorconfig.
+# Aquí solo van los interruptores y los valores que únicamente usa CodeStraight.
+# Cualquier interruptor ausente o distinto de true queda desactivado.
+
+# General
+format_on_save = true # Interruptor general: sin él no se ejecuta ninguna acción al guardar.
+log_level = verbose # Ventana Salida > CodeStraight: el resultado de cada acción en cada guardado (sin él, solo errores y totales).
+
+# Nomenclatura (reglas dotnet_naming_* del .editorconfig)
+rename_symbols = true # Renombrar como Ctrl+R, R: declaración y todos los usos en la solución.
+rename_scope = all # Hasta dónde renombra: private | internal | all. Locales y funciones locales, siempre.
+rename_controller_actions = false # No renombrar los métodos públicos de los controllers (ni sus parámetros): rutas y enlaces.
+screaming_case_constants = false # Constantes en PascalCase según el .editorconfig; true las pasaría a MAX_VALOR.
+
+# Namespaces, usings y modificadores
+namespace_declarations = true # namespace X { } -> namespace X; (csharp_style_namespace_declarations).
+remove_unused_usings = true # Quitar los using repetidos y los que no se usan (si el archivo compila).
+sort_usings = true # Ordenar los using, System primero (dotnet_sort_system_directives_first).
+accessibility_modifiers = true # Añadir private/internal donde falten (dotnet_style_require_accessibility_modifiers).
+
+# Contenido
+explicit_types = false # var -> tipo explícito: pendiente de aprobación.
+remove_comments = false # Mantener los comentarios // y /* */.
+
+# Formato
+remove_extra_blank_lines = true # Como máximo una línea en blanco seguida y ninguna entre llaves de cierre.
+remove_braces = false # Quitar llaves de if/else/for/foreach/while con una sola instrucción (necesita csharp_prefer_braces = false o when_multiline).
+format_document = true # Formatear el documento e indentar las líneas de continuación.
+wrap_long_lines = true # Partir las líneas que superan max_line_length (120).
+wrap_list_style = one_per_line # Al partir parámetros o argumentos: uno por línea (fill: todos los que quepan).
+wrap_tolerance = 0 # Columnas que una línea puede pasar de 120 antes de partirse.
+wrap_attributes = false # Los atributos ([SwaggerResponse(...)]) nunca se parten, aunque pasen de 120.
+split_long_strings = true # Textos que no caben: se parten en trozos concatenados con + (el valor no cambia).
+binary_operator_new_line = before # El operador (+, &&, ||, ??) empieza la línea nueva; after lo deja al final.
+
+# Coma final
+trailing_comma = true # Quitar la coma tras el último argumento (error de compilación) y aplicar el estilo siguiente.
+trailing_comma_style = omit # Sin coma final en inicializadores, enums y listas: omit | include | omit_when_single_line.
+
+# Codificación y saltos de línea (necesitan charset y end_of_line en el .editorconfig, que no están definidos)
+normalize_line_endings = false # No cambiar los saltos de línea.
+normalize_charset = false # No cambiar la codificación de los archivos.
+
+# Guía vertical en el editor
+show_guideline = true # Dibujar las guías verticales.
+guidelines = 120 # Columnas de las guías (varias: 80, 120); la misma que max_line_length.
+guideline_color = #70808080 # #RRGGBB, #AARRGGBB (con transparencia) o un nombre (Red, SteelBlue...).
