@@ -1,6 +1,6 @@
 ![CodeStraight](docs/images/banner.png)
 
-> 🇪🇸 [Español](#español) · 🇬🇧 [English](#english) · 📘 [Manual de uso / User manual](docs/MANUAL.md)
+> 🇪🇸 [Español](#español) · 🇺🇸 [English](#english) · 📘 [Manual de uso / User manual](docs/MANUAL.md)
 
 ![Un Ctrl+S a cámara lenta: cada acción de CodeStraight corrige el archivo y queda registrada en la ventana Salida](docs/images/save-demo.gif)
 

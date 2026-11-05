@@ -1,6 +1,6 @@
 # Historial de versiones / Release notes
 
-> 🇪🇸 [Español](#español) · 🇬🇧 [English](#english)
+> 🇪🇸 [Español](#español) · 🇺🇸 [English](#english)
 
 ---
 
@@ -84,7 +84,7 @@
 - Manual: team example with every naming rule and every `.codestraight` key explained (section 6.1 and the `docs/examples` folder).
 
 ## 0.9.0
-- Status bar indicator: green when CodeStraight is active for the current document, grey when not, orange when the last save had an error. The tooltip shows the `.codestraight` file and the enabled actions; a click opens *Output → CodeStraight*.
+- Status bar indicator: green when CodeStraight is active for the current document, gray when not, orange when the last save had an error. The tooltip shows the `.codestraight` file and the enabled actions; a click opens *Output → CodeStraight*.
 - `remove_comments`: remove `//` and `/* */` comments, keeping the documentation comments (`///`) used by IntelliSense and Swagger.
 - `screaming_case_constants`: constants in upper case separated by `_` (`MyConstantMaxValue` → `MY_CONSTANT_MAX_VALUE`), with every reference.
 

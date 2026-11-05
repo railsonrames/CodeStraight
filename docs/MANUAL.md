@@ -1,6 +1,6 @@
 # CodeStraight — Manual de uso / User manual
 
-> 🇪🇸 [Español](#español) · 🇬🇧 [English](#english) · ✨ [Funcionalidades / Features](../README.md)
+> 🇪🇸 [Español](#español) · 🇺🇸 [English](#english) · ✨ [Funcionalidades / Features](../README.md)
 
 ---
 

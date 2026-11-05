@@ -22,8 +22,11 @@ internal class DemoServicio : IDemoRepositorio
 		return _contador + proyecto;
 	}
 
-	public async Task<string> ObtenerResumenDeLaSolicitudConTodosLosDatosAsync(int proyectoSeleccionado, string nombreDelCliente,
-		string codigoDeLaRegion, bool incluirHistorico)
+	public async Task<string> ObtenerResumenDeLaSolicitudConTodosLosDatosAsync(
+		int proyectoSeleccionado,
+		string nombreDelCliente,
+		string codigoDeLaRegion,
+		bool incluirHistorico)
 	{
 		var total = await ContarPedidosAsync(
 			proyectoSeleccionado

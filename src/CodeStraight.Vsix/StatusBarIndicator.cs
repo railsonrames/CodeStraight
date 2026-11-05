@@ -37,7 +37,7 @@ internal sealed class SaveOutcome
 
 /// <summary>
 /// A small set square in Visual Studio's status bar that tells whether CodeStraight is active for the current document:
-/// green dot when its repository has a <c>.codestraight</c> with <c>format_on_save = true</c>, grey when not, orange
+/// green dot when its repository has a <c>.codestraight</c> with <c>format_on_save = true</c>, gray when not, orange
 /// when the last save reported an error. The tooltip lists the enabled switches; a click opens the Output pane.
 /// <para>
 /// Visual Studio has no public API to add items to the status bar, so the indicator is inserted into the status bar's

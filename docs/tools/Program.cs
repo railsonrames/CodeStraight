@@ -111,7 +111,7 @@ const string Signature = """
 	""";
 
 await Sample("wrap-one-per-line", Signature, "wrap_long_lines = true\nformat_document = true");
-await Sample("wrap-fill", Signature, "wrap_long_lines = true\nformat_document = true\nwrap_list_style = fill\nwrap_tolerance = 12");
+await Sample("wrap-fill", Signature, "wrap_long_lines = true\nformat_document = true\nwrap_list_style = fill");
 
 await Sample("long-strings", """
 	using System;
@@ -272,9 +272,27 @@ for (int step = 0; step < saveDemoSteps.Length; step++)
 string saveDemoResult = File.ReadAllText(Path.Combine(output, $"save-demo-{saveDemoSteps.Length - 1}.after.cs"));
 await Sample("save-demo-again", saveDemoResult, saveDemoSettings);
 
+// The demo of docs/examples, with the configuration next to it, as in a project with ImplicitUsings.
+string examples = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "examples");
+System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+await Sample(
+	"examples-demo",
+	File.ReadAllText(Path.Combine(examples, "demo", "DemoCodeStraight.antes.cs"), System.Text.Encoding.GetEncoding(1252)),
+	File.ReadAllText(Path.Combine(examples, ".codestraight")),
+	File.ReadAllText(Path.Combine(examples, ".editorconfig")),
+	"""
+	global using System;
+	global using System.Collections.Generic;
+	global using System.IO;
+	global using System.Linq;
+	global using System.Threading;
+	global using System.Threading.Tasks;
+	""");
+File.Copy(Path.Combine(output, "examples-demo.after.cs"), Path.Combine(examples, "demo", "DemoCodeStraight.despues.cs"), overwrite: true);
+
 Console.WriteLine("ok");
 
-async Task Sample(string name, string source, string codestraight)
+async Task Sample(string name, string source, string codestraight, string? editorConfigOverride = null, string? globalUsings = null)
 {
 	source = source.Replace("\r\n", "\n");
 	var workspace = new AdhocWorkspace();
@@ -292,11 +310,15 @@ async Task Sample(string name, string source, string codestraight)
 		metadataReferences: references));
 	DocumentId id = DocumentId.CreateNewId(projectId);
 	solution = solution.AddDocument(id, name + ".cs", SourceText.From(source), filePath: $"C:/demo/{name}.cs");
+	if (globalUsings is not null)
+	{
+		solution = solution.AddDocument(DocumentId.CreateNewId(projectId), "GlobalUsings.cs", SourceText.From(globalUsings), filePath: "C:/demo/GlobalUsings.cs");
+	}
 
 	FileConfiguration configuration = FileConfiguration.Create(
 		"C:/demo",
 		CodeStraightSettings.Parse(codestraight),
-		EditorConfigFile.Parse("C:/demo", editorConfig).GetProperties($"C:/demo/{name}.cs"));
+		EditorConfigFile.Parse("C:/demo", editorConfigOverride ?? editorConfig).GetProperties($"C:/demo/{name}.cs"));
 	var report = new List<string>();
 	Solution result = await CodeStraightEngine.ApplyAsync(solution.GetDocument(id)!, configuration, CancellationToken.None, report);
 	string after = (await result.GetDocument(id)!.GetTextAsync()).ToString();

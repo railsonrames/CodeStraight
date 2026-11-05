@@ -157,7 +157,7 @@ def three_way(file_name, guideline):
     versions = [
         ('Antes · Before', before, REMOVED),
         ('wrap_list_style = one_per_line', read('wrap-one-per-line.after.cs'), ADDED),
-        ('wrap_list_style = fill   ·   wrap_tolerance = 12', read('wrap-fill.after.cs'), ADDED),
+        ('wrap_list_style = fill', read('wrap-fill.after.cs'), ADDED),
     ]
     parts = []
     for title, lines, color in versions:
